@@ -5,6 +5,7 @@ Se acabar perdendo, não fica triste meu nobre, pressione 'F5' no seu teclado e 
 
 (Essa cobrinha ta na puberdade e tem um metabolismo muito acelerado, impedindo que ela cresça quando coma) 
 
-![image](https://github.com/user-attachments/assets/a2ca67f0-1c5b-4a7a-b709-7733ab2f87cc)
+![image](https://github.com/user-attachments/assets/be00e1b2-1113-43ca-82c1-16d28950ea76)
+
 
 
