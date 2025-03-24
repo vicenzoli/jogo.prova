@@ -47,13 +47,11 @@ class Cobra extends Entidade {
             this.x += 7
         }
 
-        // Verifica se a cobra bateu nas paredes
         if (this.x < 0 || this.x + this.largura > canvas.width || this.y < 0 || this.y + this.altura > canvas.height) {
             gameOver();
         }
     }
     verificarColisao(comida) {
-        // Verifica se a cobra colidiu com a comida
         if (
             this.x < comida.x + comida.largura &&
             this.x + this.largura > comida.x &&
@@ -76,7 +74,6 @@ class Comida extends Entidade {
     }
 }
 
-// Variável para armazenar a pontuação
 let pontuacao = 0;
 let jogoAtivo = true;
 
@@ -104,7 +101,6 @@ function loop() {
     cobra.atualizar()
     comida.desenhar()
 
-    // Verifica colisão e incrementa a pontuação
     if (cobra.verificarColisao(comida)) {
         pontuacao += 1; // Aumenta 1 ponto sempre que a cobra comer a comida
         comida.x = Math.random() * (canvas.width - 20); // Move a comida para uma nova posição
