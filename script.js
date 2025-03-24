@@ -80,12 +80,11 @@ let jogoAtivo = true;
 const cobra = new Cobra(100, 200, 20, 20);
 const comida = new Comida();
 
-// Carregar a imagem de fundo
 const imagemFundo = new Image();
-imagemFundo.src = 'https://static.vecteezy.com/ti/fotos-gratis/p1/9221341-tela-verde-8k-ultra-hd-plus-gratis-foto.jpg'; // Coloque o caminho correto da imagem
+imagemFundo.src = 'https://static.vecteezy.com/ti/vetor-gratis/p1/10865546-grama-do-gramado-sem-costura-no-verao-textura-de-campo-verde-da-natureza-dos-desenhos-animados-prado-bonito-e-margarida-na-primavera-grama-de-verao-padrao-no-chao-sazonal-sem-fim-por-quatro-estacoes-fundo-abstrato-natural-vetor.jpg'; // Coloque o caminho correto da imagem
 
 imagemFundo.onload = function() {
-    loop(); // Iniciar o loop após a imagem ter carregado
+    loop(); 
 }
 
 function desenharPontuacao() {
@@ -105,7 +104,7 @@ function loop() {
     if (!jogoAtivo) return;
 
     // Desenhar o fundo
-    ctx.drawImage(imagemFundo, 0, 0, canvas.width, canvas.height); // Ajuste o tamanho do fundo para o tamanho do canvas
+    ctx.drawImage(imagemFundo, 0, 0, canvas.width, canvas.height); 
 
     cobra.desenhar();
     cobra.atualizar();
