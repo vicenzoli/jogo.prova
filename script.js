@@ -37,12 +37,12 @@ class Cobra {
         this.largura = largura;
         this.altura = altura;
         this.segmentos = [{ x, y }];
-        this.direcao = null; // Para controlar a direção da cabeça da cobra
+        this.direcao = null; 
     }
 
     atualizar() {
-        // Movimenta os segmentos da cobra, começando do final
-        const cabeça = { ...this.segmentos[0] }; // A cabeça será copiada
+        
+        const cabeça = { ...this.segmentos[0] }; 
 
         if (teclasPressionadas.KeyW && this.direcao !== 'S') {
             cabeça.y -= 7;
@@ -58,13 +58,13 @@ class Cobra {
             this.direcao = 'D';
         }
 
-        // Adiciona a nova cabeça à frente
+       
         this.segmentos.unshift(cabeça);
 
-        // Remove o último segmento se a cobra não comeu
+       
         this.segmentos.pop();
 
-        // Verifica colisão com a parede
+
         if (
             cabeça.x < 0 ||
             cabeça.x + this.largura > canvas.width ||
@@ -89,13 +89,13 @@ class Cobra {
     }
 
     crescer() {
-        // Não remove o último segmento ao movimentar, fazendo a cobra crescer
+        
         const últimoSegmento = this.segmentos[this.segmentos.length - 1];
         this.segmentos.push({ ...últimoSegmento });
     }
 
     desenhar() {
-        // Desenha todos os segmentos da cobra
+     
         for (let i = 0; i < this.segmentos.length; i++) {
             const segmento = this.segmentos[i];
             ctx.fillStyle = 'black';
@@ -141,10 +141,9 @@ function loop() {
     cobra.atualizar();
     comida.desenhar();
 
-    // Verifica se a cobra comeu a comida
     if (cobra.verificarColisao(comida)) {
         pontuacao += 1;
-        cobra.crescer(); // Faz a cobra crescer
+        cobra.crescer(); 
         comida.x = Math.random() * (canvas.width - 20);
         comida.y = Math.random() * (canvas.height - 20);
     }
