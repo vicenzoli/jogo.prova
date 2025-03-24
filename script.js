@@ -80,12 +80,11 @@ let jogoAtivo = true;
 const cobra = new Cobra(100, 200, 20, 20);
 const comida = new Comida();
 
-// Carregar a imagem de fundo
-const imagemFundo = new Image();
-imagemFundo.src = 'https://static.vecteezy.com/ti/fotos-gratis/p1/9221341-tela-verde-8k-ultra-hd-plus-gratis-foto.jpg'; // Coloque o caminho correto da imagem
 
+const imagemFundo = new Image();
+imagemFundo.src = 'https://static.vecteezy.com/ti/fotos-gratis/p1/9221341-tela-verde-8k-ultra-hd-plus-gratis-foto.jpg'; 
 imagemFundo.onload = function() {
-    loop(); // Iniciar o loop após a imagem ter carregado
+    loop(); 
 }
 
 function desenharPontuacao() {
@@ -105,8 +104,7 @@ function loop() {
     if (!jogoAtivo) return;
 
     // Desenhar o fundo
-    ctx.drawImage(imagemFundo, 0, 0, canvas.width, canvas.height); // Ajuste o tamanho do fundo para o tamanho do canvas
-
+    ctx.drawImage(imagemFundo, 0, 0, canvas.width, canvas.height); 
     cobra.desenhar();
     cobra.atualizar();
     comida.desenhar();
