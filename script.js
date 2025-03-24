@@ -70,6 +70,10 @@ class Comida extends Entidade {
     constructor() {
         super(Math.random() * (canvas.width - 20), Math.random() * (canvas.height - 20), 20, 20)
     }
+    desenhar() {
+        ctx.fillStyle = 'red'; // Define a cor da comida como vermelha
+        ctx.fillRect(this.x, this.y, this.largura, this.altura);
+    }
 }
 
 // Variável para armazenar a pontuação
