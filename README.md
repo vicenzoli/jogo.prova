@@ -7,5 +7,9 @@ Se acabar perdendo, não fica triste meu nobre, pressione 'F5' no seu teclado e 
 
 ![image](https://github.com/user-attachments/assets/be00e1b2-1113-43ca-82c1-16d28950ea76)
 
+considerações finais: 
+consegui adicionar a função de pontuação funcionando corretamente, e também a de colidir.
+Ate consegui adicionar a função de crescer quando come na branch 'Tentarfazercrescer' mas como ficou com alguns outros erros eu encerrei o jogo sem essa modificação.
+
 
 
