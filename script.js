@@ -69,7 +69,7 @@ class Comida extends Entidade {
         super(Math.random() * (canvas.width - 20), Math.random() * (canvas.height - 20), 20, 20)
     }
     desenhar() {
-        ctx.fillStyle = 'red'; // Define a cor da comida como vermelha
+        ctx.fillStyle = 'red'; 
         ctx.fillRect(this.x, this.y, this.largura, this.altura);
     }
 }
@@ -83,7 +83,7 @@ const comida = new Comida()
 function desenharPontuacao() {
     ctx.fillStyle = 'black';
     ctx.font = '20px Arial';
-    ctx.fillText('Pontuação: ' + pontuacao, 10, 30); // Desenha a pontuação no canto superior esquerdo
+    ctx.fillText('Pontuação: ' + pontuacao, 10, 30); 
 }
 
 function gameOver() {
@@ -94,7 +94,7 @@ function gameOver() {
 }
 
 function loop() {
-    if (!jogoAtivo) return; // Interrompe o jogo se o game over ocorrer
+    if (!jogoAtivo) return; 
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     cobra.desenhar()
@@ -102,12 +102,12 @@ function loop() {
     comida.desenhar()
 
     if (cobra.verificarColisao(comida)) {
-        pontuacao += 1; // Aumenta 1 ponto sempre que a cobra comer a comida
-        comida.x = Math.random() * (canvas.width - 20); // Move a comida para uma nova posição
+        pontuacao += 1; // 
+        comida.x = Math.random() * (canvas.width - 20); 
         comida.y = Math.random() * (canvas.height - 20);
     }
 
-    desenharPontuacao(); // Desenha a pontuação
+    desenharPontuacao();
 
     requestAnimationFrame(loop)
 }
