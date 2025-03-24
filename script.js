@@ -27,80 +27,40 @@ class Entidade {
         this.altura = altura;
     }
     desenhar() {
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = 'green';
         ctx.fillRect(this.x, this.y, this.largura, this.altura);
     }
 }
 
-class Cobra {
+class Cobra extends Entidade {
     constructor(x, y, largura, altura) {
-        this.largura = largura;
-        this.altura = altura;
-        this.segmentos = [{ x, y }];
-        this.direcao = null; // Para controlar a direção da cabeça da cobra
+        super(x, y, largura, altura);
     }
-
     atualizar() {
-        // Movimenta os segmentos da cobra, começando do final
-        const cabeça = { ...this.segmentos[0] }; // A cabeça será copiada
-
-        if (teclasPressionadas.KeyW && this.direcao !== 'S') {
-            cabeça.y -= 7;
-            this.direcao = 'W';
-        } else if (teclasPressionadas.KeyS && this.direcao !== 'W') {
-            cabeça.y += 7;
-            this.direcao = 'S';
-        } else if (teclasPressionadas.KeyA && this.direcao !== 'D') {
-            cabeça.x -= 7;
-            this.direcao = 'A';
-        } else if (teclasPressionadas.KeyD && this.direcao !== 'A') {
-            cabeça.x += 7;
-            this.direcao = 'D';
+        if (teclasPressionadas.KeyW) {
+            this.y -= 7;
+        } else if (teclasPressionadas.KeyS) {
+            this.y += 7;
+        } else if (teclasPressionadas.KeyA) {
+            this.x -= 7;
+        } else if (teclasPressionadas.KeyD) {
+            this.x += 7;
         }
 
-        // Adiciona a nova cabeça à frente
-        this.segmentos.unshift(cabeça);
-
-        // Remove o último segmento se a cobra não comeu
-        this.segmentos.pop();
-
-        // Verifica colisão com a parede
-        if (
-            cabeça.x < 0 ||
-            cabeça.x + this.largura > canvas.width ||
-            cabeça.y < 0 ||
-            cabeça.y + this.altura > canvas.height
-        ) {
+        if (this.x < 0 || this.x + this.largura > canvas.width || this.y < 0 || this.y + this.altura > canvas.height) {
             gameOver();
         }
     }
-
     verificarColisao(comida) {
-        const cabeça = this.segmentos[0];
         if (
-            cabeça.x < comida.x + comida.largura &&
-            cabeça.x + this.largura > comida.x &&
-            cabeça.y < comida.y + comida.altura &&
-            cabeça.y + this.altura > comida.y
+            this.x < comida.x + comida.largura &&
+            this.x + this.largura > comida.x &&
+            this.y < comida.y + comida.altura &&
+            this.y + this.altura > comida.y
         ) {
             return true;
         }
         return false;
-    }
-
-    crescer() {
-        // Não remove o último segmento ao movimentar, fazendo a cobra crescer
-        const últimoSegmento = this.segmentos[this.segmentos.length - 1];
-        this.segmentos.push({ ...últimoSegmento });
-    }
-
-    desenhar() {
-        // Desenha todos os segmentos da cobra
-        for (let i = 0; i < this.segmentos.length; i++) {
-            const segmento = this.segmentos[i];
-            ctx.fillStyle = 'black';
-            ctx.fillRect(segmento.x, segmento.y, this.largura, this.altura);
-        }
     }
 }
 
@@ -109,7 +69,7 @@ class Comida extends Entidade {
         super(Math.random() * (canvas.width - 20), Math.random() * (canvas.height - 20), 20, 20);
     }
     desenhar() {
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = 'red'; 
         ctx.fillRect(this.x, this.y, this.largura, this.altura);
     }
 }
@@ -120,10 +80,18 @@ let jogoAtivo = true;
 const cobra = new Cobra(100, 200, 20, 20);
 const comida = new Comida();
 
+// Carregar a imagem de fundo
+const imagemFundo = new Image();
+imagemFundo.src = 'https://static.vecteezy.com/ti/fotos-gratis/p1/9221341-tela-verde-8k-ultra-hd-plus-gratis-foto.jpg'; // Coloque o caminho correto da imagem
+
+imagemFundo.onload = function() {
+    loop(); // Iniciar o loop após a imagem ter carregado
+}
+
 function desenharPontuacao() {
     ctx.fillStyle = 'black';
     ctx.font = '20px Arial';
-    ctx.fillText('Pontuação: ' + pontuacao, 10, 30);
+    ctx.fillText('Pontuação: ' + pontuacao, 10, 30); 
 }
 
 function gameOver() {
@@ -136,16 +104,16 @@ function gameOver() {
 function loop() {
     if (!jogoAtivo) return;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Desenhar o fundo
+    ctx.drawImage(imagemFundo, 0, 0, canvas.width, canvas.height); // Ajuste o tamanho do fundo para o tamanho do canvas
+
     cobra.desenhar();
     cobra.atualizar();
     comida.desenhar();
 
-    // Verifica se a cobra comeu a comida
     if (cobra.verificarColisao(comida)) {
         pontuacao += 1;
-        cobra.crescer(); // Faz a cobra crescer
-        comida.x = Math.random() * (canvas.width - 20);
+        comida.x = Math.random() * (canvas.width - 20); 
         comida.y = Math.random() * (canvas.height - 20);
     }
 
@@ -153,5 +121,3 @@ function loop() {
 
     requestAnimationFrame(loop);
 }
-
-loop();
